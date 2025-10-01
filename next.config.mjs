@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    images: {
+        domains: ["www.themealdb.com"], // <-- add this
+    },
+};
 
 export default nextConfig;

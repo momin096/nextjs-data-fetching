@@ -1,4 +1,10 @@
+import Image from "next/image";
 import MealSearchInput from "./components/MealSearchInput";
+
+export const metadata = {
+    title: "All Meals",
+    description: "Meals Loaded form MealDB API",
+};
 
 
 export default async function MealsPage({ searchParams }) {
@@ -18,6 +24,8 @@ export default async function MealsPage({ searchParams }) {
 
     const meals = await fetchMeals();
 
+
+
     return (
         <div>
             <div className='flex justify-center items-center my-5'>
@@ -27,7 +35,8 @@ export default async function MealsPage({ searchParams }) {
                 {
                     meals?.map(meal => {
                         return (
-                            <div className='bg-gray-800 rounded-2xl p-8 space-y-2'>
+                            <div key={meal.meadId} className='bg-gray-800 rounded-2xl p-8 space-y-2'>
+                                <Image src={meal?.strMealThumb} width={560} height={500} className="rounded-2xl"/>
                                 <p className='text-4xl font-bold'>{meal?.strMeal}</p>
                                 <p className='font-bold'>{meal?.strCategory}</p>
                                 <p>{meal?.strInstructions}</p>

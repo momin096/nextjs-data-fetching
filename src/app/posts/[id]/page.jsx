@@ -5,6 +5,21 @@ export const getSinglePost = async (id) => {
     return data
 }
 
+export async function generateMetadata({ params }) {
+    // read route params
+    const { id } = await params
+
+    // fetch data
+    const singlePost = await getSinglePost(id)
+
+
+
+    return {
+        title: singlePost.title,
+        description: singlePost.body,
+    }
+}
+
 
 export default async function SinglePost({ params }) {
     const p = await params;
@@ -12,7 +27,7 @@ export default async function SinglePost({ params }) {
 
     return (
         <div className="flex items-center justify-center max-w-xl mx-auto mt-5">
-            <div  className="bg-gray-800 p-5 rounded-2xl space-y-5">
+            <div className="bg-gray-800 p-5 rounded-2xl space-y-5">
                 <p className="text-2xl ">{singlePost.title}</p>
                 <p >{singlePost.body}</p>
             </div>
